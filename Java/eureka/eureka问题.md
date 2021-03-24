@@ -26,3 +26,19 @@ The injection point has the following annotations:
 
 原因：是因为没有导入web
 
+解决Feign调用出现URISyntaxException: Illegal character in hostname at index
+```
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  # 优先使用IP地址方式进行注册服务
+    prefer-ip-address: true
+  # 配置使用指定IP
+    ip-address: 127.0.0.1
+```
+原因是因为我的主机名中存在下划线，而它是不支持下划线的。
+
+Eureka服务注册是采用主机名还是IP地址？，
